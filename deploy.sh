@@ -19,9 +19,9 @@ fi
 shopt -u nocasematch
 
 cd ~/Study/
-tar --exclude='/MPIReduction/build'   \
-    --exclude='/MPIReduction/.vscode' \
-    --exclude='/MPIReduction/.git'    \
+tar --exclude='build'   \
+    --exclude='.vscode' \
+    --exclude='.git'    \
     -czvf reduction.tar.gz MPIReduction
 scp reduction.tar.gz $site.g5k:
 ssh $site.g5k "rm -rf MPIReduction"
