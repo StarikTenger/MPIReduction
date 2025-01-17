@@ -26,4 +26,9 @@ tar --exclude='build'   \
 scp reduction.tar.gz $site.g5k:
 ssh $site.g5k "rm -rf MPIReduction"
 ssh $site.g5k "tar -xzvf reduction.tar.gz"
-ssh $site.g5k "cd MPIReduction && mkdir build && cd build && cmake .. && make"
+#ssh $site.g5k "cd MPIReduction && mkdir build && cd build && cmake .. && make"
+ssh $site.g5k "cd MPIReduction &&\
+               mkdir build &&\
+               mpic++ simple_reduce.cpp -fopenmp -o build/simple_reduce &&\
+               mpic++ reduce_scatter.cpp -fopenmp -o build/reduce_scatter\
+               "

@@ -1,0 +1,51 @@
+Experiment 3: reduction with ring
+
+ -------- Reduction with 1 threads --------
+name=chiclet-6.lille.grid5000.fr;	rank=1;	openMP threads: 1/1
+Number of processes: 2
+Vector size: 200000000
+name=chiclet-1.lille.grid5000.fr;	rank=0;	openMP threads: 1/1
+Elapsed time: 2329.03 ms
+
+ -------- Reduction with 2 threads --------
+name=chiclet-6.lille.grid5000.fr;	rank=1;	openMP threads: 2/2
+Number of processes: 2
+Vector size: 200000000
+name=chiclet-1.lille.grid5000.fr;	rank=0;	openMP threads: 2/2
+Elapsed time: 1994.7 ms
+
+ -------- Reduction with 4 threads --------
+name=chiclet-6.lille.grid5000.fr;	rank=1;	openMP threads: 4/4
+Number of processes: 2
+Vector size: 200000000
+name=chiclet-1.lille.grid5000.fr;	rank=0;	openMP threads: 4/4
+Elapsed time: 1981.47 ms
+
+ -------- Reduction with 8 threads --------
+Number of processes: 2
+Vector size: 200000000
+name=chiclet-1.lille.grid5000.fr;	rank=0;	openMP threads: 8/8
+name=chiclet-6.lille.grid5000.fr;	rank=1;	openMP threads: 8/8
+Elapsed time: 1900.59 ms
+
+ -------- Reduction with 16 threads --------
+name=chiclet-6.lille.grid5000.fr;	rank=1;	openMP threads: 16/16
+Number of processes: 2
+Vector size: 200000000
+name=chiclet-1.lille.grid5000.fr;	rank=0;	openMP threads: 16/16
+Elapsed time: 2030.7 ms
+
+ -------- Reduction with 32 threads --------
+name=chiclet-6.lille.grid5000.fr;	rank=1;	openMP threads: 32/32
+Number of processes: 2
+Vector size: 200000000
+name=chiclet-1.lille.grid5000.fr;	rank=0;	openMP threads: 32/32
+Elapsed time: 1981.46 ms
+
+ -------- Reduction with 64 threads --------
+name=chiclet-6.lille.grid5000.fr;	rank=1;	openMP threads: 64/64
+Number of processes: 2
+Vector size: 200000000
+name=chiclet-1.lille.grid5000.fr;	rank=0;	openMP threads: 64/64
+Elapsed time: 1984.42 ms
+

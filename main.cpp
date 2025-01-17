@@ -5,17 +5,25 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#define VECTOR_SIZE 1000000000  // Size of the vector
-
 int main(int argc, char *argv[]) {
+
     int rank, n_nodes;
     float *vector = NULL;
     float local_sum = 0.0, global_sum = 0.0;
-    double start_time, end_time;
+    double start_time, scatter_time, end_time;
 
     MPI_Init(&argc, &argv);                // Initialize MPI
     MPI_Comm_rank(MPI_COMM_WORLD, &rank); // Get process rank
     MPI_Comm_size(MPI_COMM_WORLD, &n_nodes); // Get total number of processes
+
+    size_t VECTOR_SIZE;
+    if (argc < 2) {
+        if (rank == 0) {
+            std::cerr << "Usage: " << argv[0] << " <vector_size>" << std::endl;
+            return 1;
+        }
+    }
+    VECTOR_SIZE = atoi(argv[1]);
 
     int chunk_size = VECTOR_SIZE / n_nodes;  // Divide vector among processes
 
@@ -27,14 +35,23 @@ int main(int argc, char *argv[]) {
 
         std::cout << "Number of processes: " << n_nodes << std::endl;
         vector = (float *)malloc(VECTOR_SIZE * sizeof(float));
-        for (int i = 0; i < VECTOR_SIZE; i++) {
-            vector[i] = 1.0;  // Fill the vector with 1.0 for simplicity
+        #pragma omp parallel
+        {
+            unsigned int seed = omp_get_thread_num();
+            #pragma omp for
+            for (int i = 0; i < VECTOR_SIZE; i++) {
+                vector[i] = ((float)rand_r(&seed) / RAND_MAX) * 200.0 - 100.0;
+            }
         }
-        start_time = MPI_Wtime();  // Start the timer on the root process
+        start_time = MPI_Wtime();
     }
 
     // Scatter the vector to all processes
     MPI_Scatter(vector, chunk_size, MPI_FLOAT, local_vector, chunk_size, MPI_FLOAT, 0, MPI_COMM_WORLD);
+
+    if (rank == 0) {
+        scatter_time = MPI_Wtime();
+    }
 
     // Print the number of threads available for OpenMP
     #pragma omp parallel
@@ -62,7 +79,9 @@ int main(int argc, char *argv[]) {
     if (rank == 0) {
         end_time = MPI_Wtime();  // Stop the timer on the root process
         printf("Global sum: %f\n", global_sum);
-        printf("Execution time: %f seconds\n", end_time - start_time);
+        printf("Execution time: \t%f seconds\n", end_time - start_time);
+        printf("Scatter time:   \t%f seconds\n", scatter_time - start_time);
+        printf("Reduction time: \t%f seconds\n", end_time - scatter_time);
         free(vector);
     }
 

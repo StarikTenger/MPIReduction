@@ -1,0 +1,44 @@
+Experiment 2: reduction on 2 nodes MPI + openMP (redefined reduce OP)
+
+ -------- Reduction with 2 threads --------
+Number of processes: 2
+Vector size: 200000000
+name=dahu-32.grenoble.grid5000.fr;	rank=0;	openMP threads: 2/2
+name=dahu-4.grenoble.grid5000.fr;	rank=1;	openMP threads: 2/2
+Elapsed time: 612.322 ms
+
+ -------- Reduction with 4 threads --------
+name=dahu-4.grenoble.grid5000.fr;	rank=1;	openMP threads: 4/4
+Number of processes: 2
+Vector size: 200000000
+name=dahu-32.grenoble.grid5000.fr;	rank=0;	openMP threads: 4/4
+Elapsed time: 592.393 ms
+
+ -------- Reduction with 8 threads --------
+Number of processes: 2
+Vector size: 200000000
+name=dahu-32.grenoble.grid5000.fr;	rank=0;	openMP threads: 8/8
+name=dahu-4.grenoble.grid5000.fr;	rank=1;	openMP threads: 8/8
+Elapsed time: 593.774 ms
+
+ -------- Reduction with 16 threads --------
+Number of processes: 2
+Vector size: 200000000
+name=dahu-32.grenoble.grid5000.fr;	rank=0;	openMP threads: 16/16
+name=dahu-4.grenoble.grid5000.fr;	rank=1;	openMP threads: 16/16
+Elapsed time: 664.971 ms
+
+ -------- Reduction with 32 threads --------
+name=dahu-4.grenoble.grid5000.fr;	rank=1;	openMP threads: 32/32
+Number of processes: 2
+Vector size: 200000000
+name=dahu-32.grenoble.grid5000.fr;	rank=0;	openMP threads: 32/32
+Elapsed time: 597.693 ms
+
+ -------- Reduction with 64 threads --------
+name=dahu-4.grenoble.grid5000.fr;	rank=1;	openMP threads: 64/64
+Number of processes: 2
+Vector size: 200000000
+name=dahu-32.grenoble.grid5000.fr;	rank=0;	openMP threads: 64/64
+Elapsed time: 599.707 ms
+

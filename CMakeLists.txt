@@ -6,7 +6,7 @@ project(MPIReduction)
 
 find_package(MPI REQUIRED)
 
-add_executable(reduce main.cpp)
+add_executable(reduce simple_reduce.cpp)
 find_package(OpenMP REQUIRED)
 
 target_compile_options(reduce PRIVATE -fopenmp)
